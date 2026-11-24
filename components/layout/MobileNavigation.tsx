@@ -5,6 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Phone, X } from "lucide-react";
 import { contact, headerCta, navigation } from "@/content/site";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
+import AnimatedIcon from "@/components/ui/AnimatedIcon";
+
+const CHILD_ICONS: Record<string, string> = { "/prices/": "receipt", "/reviews/": "star", "/insurance/": "shield", "/blog/": "book" };
 
 export default function MobileNavigation({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const [sub, setSub] = useState<string | null>(null);
@@ -39,7 +42,9 @@ export default function MobileNavigation({ open, setOpen }: { open: boolean; set
                 {navigation.map((item, i) => (
                   <motion.li key={item.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 + i * 0.05 }}>
                     <div className="flex items-center justify-between">
-                      <Link href={item.href} onClick={close} className="block py-4 font-display text-[2rem] font-light">{item.label}</Link>
+                      <Link href={item.href} onClick={close} className="group flex items-baseline gap-4 py-4 font-display text-[2rem] font-light transition-colors hover:text-gold-light">
+                        <span className="font-display text-sm italic text-gold">{String(i + 1).padStart(2, "0")}</span>{item.label}
+                      </Link>
                       {item.children && (
                         <button type="button" aria-expanded={sub === item.label} aria-label={`${item.label} submenu`}
                           onClick={() => setSub(sub === item.label ? null : item.label)} className="grid h-12 w-12 place-items-center rounded-full border border-ivory/15">
@@ -51,7 +56,9 @@ export default function MobileNavigation({ open, setOpen }: { open: boolean; set
                       {item.children && sub === item.label && (
                         <motion.ul initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
                           {item.children.map((c) => (
-                            <li key={c.href}><Link href={c.href} onClick={close} className="flex items-center gap-3 py-2.5 pl-1 text-lg text-ivory/70"><span className="h-px w-5 bg-gold" />{c.label}</Link></li>
+                            <li key={c.href}><Link href={c.href} onClick={close} className="group flex items-center gap-3 rounded-2xl py-2 pl-1 text-lg text-ivory/75 hover:text-ivory">
+                              <span className="grid h-10 w-10 place-items-center rounded-xl bg-ivory/[0.06] ring-1 ring-gold/30"><AnimatedIcon name={CHILD_ICONS[c.href] ?? "crown"} className="h-5 w-5" accentColor="#D8C29B" /></span>{c.label}
+                            </Link></li>
                           ))}
                           <li className="h-4" />
                         </motion.ul>
@@ -62,6 +69,10 @@ export default function MobileNavigation({ open, setOpen }: { open: boolean; set
               </ul>
             </nav>
             <div className="mt-10 grid gap-3">
+              <p className="flex items-center gap-2 text-sm text-ivory/60">
+                <span className="relative flex h-2 w-2"><span className="absolute inset-0 animate-ping rounded-full bg-emerald-400/70" /><span className="relative h-2 w-2 rounded-full bg-emerald-400" /></span>
+                {contact.hours}
+              </p>
               <Link href={headerCta.href} onClick={close} className="btn-gold w-full">{headerCta.label}</Link>
               <div className="grid grid-cols-2 gap-3">
                 <a href={contact.phoneHref} className="btn-ghost-light"><Phone className="h-4 w-4" />{contact.phoneDisplay}</a>

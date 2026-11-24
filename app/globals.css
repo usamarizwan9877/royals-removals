@@ -32,6 +32,52 @@
 @keyframes drive { 0% { offset-distance: 0%; } 45%, 55% { offset-distance: 100%; } 100% { offset-distance: 100%; } }
 .route-dash { stroke-dasharray: 4 8; animation: dash 1.6s linear infinite; }
 @keyframes dash { to { stroke-dashoffset: -24; } }
+/* Footer signature */
+.footer-wordmark { background: linear-gradient(100deg, #8C6D3D 0%, #D8C29B 30%, #F6EAD0 45%, #D8C29B 60%, #B08D57 80%, #8C6D3D 100%); background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; animation: wordmark 9s ease-in-out infinite; }
+@keyframes wordmark { 0%, 100% { background-position: 0% 0; } 50% { background-position: 100% 0; } }
+.footer-crown { animation: crown-bob 4s ease-in-out infinite; filter: drop-shadow(0 6px 14px rgba(176,141,87,.35)); }
+@keyframes crown-bob { 50% { transform: translateY(-4px); } }
+
+/* Hero */
+.hero-text-sheen { background: linear-gradient(100deg, transparent 35%, rgba(255,255,255,.85) 50%, transparent 65%); background-size: 250% 100%; mix-blend-mode: soft-light; animation: sheen 6s ease-in-out 2.4s infinite; }
+.hero-speck { opacity: 0; animation-name: speck; animation-iteration-count: infinite; animation-timing-function: linear; }
+@keyframes speck { 0% { transform: translateY(0) scale(.6); opacity: 0; } 15% { opacity: .55; } 85% { opacity: .35; } 100% { transform: translateY(-140px) scale(1); opacity: 0; } }
+.hero-spin { animation: hero-spin 80s linear infinite; }
+@keyframes hero-spin { to { transform: rotate(360deg); } }
+.hero-sheen { background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%); background-size: 250% 100%; animation: sheen 7s ease-in-out 2s infinite; }
+@keyframes sheen { 0% { background-position: 130% 0; } 30%, 100% { background-position: -40% 0; } }
+.btn-shine::after { content: ""; position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.28) 50%, transparent 70%); background-size: 250% 100%; animation: sheen 4.5s ease-in-out 2.5s infinite; pointer-events: none; }
+.hero-scroll { animation: hero-scroll 1.8s ease-in-out infinite; }
+@keyframes hero-scroll { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(14px); opacity: 0; } 100% { opacity: 0; } }
+
+/* AnimatedIcon accent motions: a quick move, then rest for the rest of the cycle */
+.ai-acc { transform-box: fill-box; transform-origin: center; animation-duration: 4.5s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }
+.group:hover .ai-acc { animation-duration: 1.4s; }
+.ai-bounce { animation-name: ai-bounce; }
+.ai-float { animation-name: ai-float; }
+.ai-wiggle { animation-name: ai-wiggle; }
+.ai-pulse { animation-name: ai-pulse; }
+.ai-spin { animation-name: ai-spin; }
+.ai-flash { animation-name: ai-flash; }
+.ai-drive { animation-name: ai-drive; }
+.ai-swing { animation-name: ai-swing; }
+.ai-lift { animation-name: ai-lift; }
+@keyframes ai-bounce { 0%, 30%, 100% { transform: translateY(0); } 10% { transform: translateY(-2.5px); } 20% { transform: translateY(.6px); } }
+@keyframes ai-float { 0%, 30%, 100% { transform: translateY(0) scale(1); } 15% { transform: translateY(-1.5px) scale(1.08); } }
+@keyframes ai-wiggle { 0%, 30%, 100% { transform: rotate(0); } 7% { transform: rotate(-14deg); } 14% { transform: rotate(11deg); } 21% { transform: rotate(-6deg); } }
+@keyframes ai-pulse { 0%, 30%, 100% { transform: scale(1); } 12% { transform: scale(1.3); } }
+@keyframes ai-spin { 0% { transform: rotate(0); } 30%, 100% { transform: rotate(360deg); } }
+@keyframes ai-flash { 0%, 30%, 100% { opacity: 1; } 6%, 18% { opacity: .15; } 12%, 24% { opacity: 1; } }
+@keyframes ai-drive { 0%, 30%, 100% { transform: translateX(0); } 10% { transform: translateX(2px); } 20% { transform: translateX(-1px); } }
+@keyframes ai-swing { 0%, 30%, 100% { transform: rotate(0); } 8% { transform: rotate(18deg); } 16% { transform: rotate(-12deg); } 24% { transform: rotate(5deg); } }
+@keyframes ai-lift { 0%, 30%, 100% { transform: translateY(0); } 12% { transform: translateY(-3px); } }
+.map-ping { transform-box: fill-box; transform-origin: center; animation: map-ping 2.2s ease-out infinite; }
+@keyframes map-ping { from { transform: scale(1); opacity: .6; } to { transform: scale(3.2); opacity: 0; } }
+.route-pin { animation: pin-bob 2.4s ease-in-out infinite; transform-box: fill-box; }
+@keyframes pin-bob { 50% { transform: translateY(-4px); } }
+.route-van-bob { animation: van-bob .45s ease-in-out infinite alternate; }
+@keyframes van-bob { to { transform: translateY(-0.8px); } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -254,6 +254,7 @@ export const reviews = {
   eyebrow: "Customer Reviews",
   title: { pre: "What Our ", gold: "Customers Say" } as Title,
   trustpilot: {
+    reviewUrl: "https://www.trustpilot.com/review/theroyalsremovals.co.uk?utm_medium=trustbox&utm_source=TrustBoxReviewCollector",
     templateId: "56278e9abfbbba0bdcd568bc",
     businessUnitId: "69f6211d68a3e45cacfe1f93",
     token: "329da09d-6ed3-4aff-8a41-45443a14059e",

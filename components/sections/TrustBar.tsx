@@ -1,21 +1,23 @@
-import { MapPin, Phone, ShieldCheck, Zap } from "lucide-react";
 import { trustBar } from "@/content/site";
 import Reveal from "@/components/ui/Reveal";
+import AnimatedIcon from "@/components/ui/AnimatedIcon";
 
-const icons = [MapPin, Phone, ShieldCheck, Zap];
+const icons = ["pin", "phone", "shield", "stopwatch"];
 
 export default function TrustBar() {
   return (
-    <section aria-label="Why customers trust us" className="relative bg-ink text-ivory">
+    <section aria-label="Why customers trust us" className="relative overflow-hidden bg-ink text-ivory">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
       <div className="container grid max-w-[1400px] grid-cols-2 divide-ivory/10 lg:grid-cols-4 lg:divide-x">
         {trustBar.map((t, i) => {
-          const I = icons[i];
           const inner = (
             <>
-              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-gold/40 text-gold-light transition-colors group-hover:bg-gold group-hover:text-ink"><I className="h-[18px] w-[18px]" strokeWidth={1.5} /></span>
+              <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-gold/25 to-gold/5 text-ivory ring-1 ring-gold/40 transition-all duration-500 group-hover:scale-110 group-hover:ring-gold">
+                <AnimatedIcon name={icons[i]} className="h-[22px] w-[22px]" delay={i * 0.12} accentColor="#D8C29B" />
+              </span>
               <span>
                 <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-ivory/50">{t.title}</span>
-                <span className="mt-0.5 block text-[0.95rem] font-medium">{t.text}</span>
+                <span className="mt-0.5 block text-[0.95rem] font-medium transition-colors group-hover:text-gold-light">{t.text}</span>
               </span>
             </>
           );

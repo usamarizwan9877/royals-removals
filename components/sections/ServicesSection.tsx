@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { services } from "@/content/site";
-import Icon from "@/components/ui/Icon";
+import AnimatedIcon from "@/components/ui/AnimatedIcon";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -38,7 +38,7 @@ function Card({ item, v, idx }: { item: Item; v: Variant; idx: number }) {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent" />
         <span className="absolute right-8 top-8 font-display text-7xl font-light italic text-ivory/20">{num}</span>
         <div className="relative max-w-md">
-          <span className="grid h-12 w-12 place-items-center rounded-full border border-gold/50 text-gold-light"><Icon name={item.icon} className="h-5 w-5" /></span>
+          <span className="grid h-14 w-14 place-items-center rounded-2xl border border-gold/40 bg-ink/40 text-ivory backdrop-blur-md transition-transform duration-500 group-hover:-rotate-6"><AnimatedIcon name={item.icon} className="h-7 w-7" accentColor="#D8C29B" /></span>
           <h3 className="mt-6 font-display text-4xl font-light sm:text-5xl">{item.title}</h3>
           <p className="mt-4 text-ivory/75">{item.text}</p>
           <div className="mt-7"><More light /></div>
@@ -47,12 +47,12 @@ function Card({ item, v, idx }: { item: Item; v: Variant; idx: number }) {
     );
   if (v === "split")
     return (
-      <Link href={item.href} className="group grid h-full overflow-hidden rounded-[32px] border border-ink/5 bg-white shadow-card transition-shadow duration-500 hover:shadow-soft sm:grid-cols-[0.9fr_1.1fr]">
+      <Link href={item.href} className="group grid h-full overflow-hidden rounded-[32px] border border-ink/5 bg-white shadow-card transition-all duration-500 hover:-translate-y-1 hover:shadow-soft sm:grid-cols-[0.9fr_1.1fr]">
         <div className="relative min-h-[220px] overflow-hidden">
           <Image src={item.img.src} alt={item.img.alt} fill sizes="(min-width:1024px) 20vw, 100vw" className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
         </div>
         <div className="flex flex-col p-7">
-          <div className="flex items-center justify-between"><Icon name={item.icon} className="h-6 w-6 text-gold-deep" /><span className="font-display italic text-ink/30">{num}</span></div>
+          <div className="flex items-center justify-between"><span className="grid h-12 w-12 place-items-center rounded-2xl bg-ink text-ivory shadow-card transition-transform duration-500 group-hover:-rotate-6"><AnimatedIcon name={item.icon} className="h-6 w-6" accentColor="#D8C29B" /></span><span className="font-display text-2xl italic text-ink/20 transition-colors group-hover:text-gold">{num}</span></div>
           <h3 className="mt-5 font-display text-[1.7rem] font-light leading-tight">{item.title}</h3>
           <p className="mt-3 flex-1 text-[0.92rem] leading-relaxed text-ink/65">{item.text}</p>
           <div className="mt-6"><More /></div>
@@ -61,10 +61,10 @@ function Card({ item, v, idx }: { item: Item; v: Variant; idx: number }) {
     );
   if (v === "arch")
     return (
-      <Link href={item.href} className="group flex h-full flex-col rounded-[32px] bg-ivory-200/60 p-5 transition-colors duration-500 hover:bg-ivory-200">
+      <Link href={item.href} className="group flex h-full flex-col rounded-[32px] border border-transparent bg-ivory-200/60 p-5 transition-all duration-500 hover:-translate-y-1 hover:border-gold/30 hover:bg-white hover:shadow-soft">
         <div className="arch relative aspect-[5/4] overflow-hidden">
           <Image src={item.img.src} alt={item.img.alt} fill sizes="(min-width:1024px) 30vw, 100vw" className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-110" />
-          <span className="absolute left-1/2 top-5 grid h-11 w-11 -translate-x-1/2 place-items-center rounded-full bg-ivory-50/90 text-gold-deep backdrop-blur"><Icon name={item.icon} className="h-5 w-5" /></span>
+          <span className="absolute left-1/2 top-5 grid h-14 w-14 -translate-x-1/2 place-items-center rounded-full bg-ivory-50/95 text-ink shadow-card ring-4 ring-ivory-50/40 backdrop-blur transition-transform duration-500 group-hover:-translate-y-1"><AnimatedIcon name={item.icon} className="h-6 w-6" /></span>
         </div>
         <div className="flex flex-1 flex-col px-2 pb-2 pt-6">
           <h3 className="font-display text-[1.6rem] font-light">{item.title}</h3>
@@ -76,7 +76,7 @@ function Card({ item, v, idx }: { item: Item; v: Variant; idx: number }) {
   return (
     <Link href={item.href} className="group relative grid overflow-hidden rounded-[32px] bg-ink text-ivory md:grid-cols-[1.2fr_1fr]">
       <div className="relative z-10 flex flex-col justify-center gap-5 p-8 sm:p-12">
-        <span className="font-display text-sm italic text-gold-light">{num}</span>
+        <span className="flex items-center gap-4"><span className="grid h-14 w-14 place-items-center rounded-2xl border border-gold/40 text-ivory transition-transform duration-500 group-hover:-rotate-6"><AnimatedIcon name={item.icon} className="h-7 w-7" accentColor="#D8C29B" /></span><span className="font-display text-sm italic text-gold-light">{num}</span></span>
         <h3 className="font-display text-4xl font-light">{item.title}</h3>
         <p className="max-w-lg text-ivory/70">{item.text}</p>
         <More light />

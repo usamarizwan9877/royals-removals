@@ -35,18 +35,29 @@ export default function InsuranceSection() {
               <Reveal as="li" key={c.title} delay={i * 0.1}
                 className={`group relative overflow-hidden rounded-[32px] p-8 transition-transform duration-500 hover:-translate-y-1.5 sm:p-10 ${dark ? "bg-ink text-ivory" : "border border-ink/5 bg-white shadow-card"}`}>
                 <div aria-hidden className={`absolute -right-16 -top-16 h-48 w-48 rounded-full ${dark ? "bg-gold/10" : "bg-gold/10"} blur-2xl transition-transform duration-700 group-hover:scale-150`} />
-                <Shield dark={dark} />
+                <div className="transition-transform duration-700 group-hover:-translate-y-1 group-hover:scale-105"><Shield dark={dark} /></div>
                 <h3 className="mt-8 font-display text-[1.75rem] font-light leading-tight">{c.title}</h3>
                 <p className={`mt-4 text-[0.95rem] leading-relaxed ${dark ? "text-ivory/65" : "text-ink/65"}`}>{c.text}</p>
                 <ul className={`mt-8 space-y-3 border-t pt-6 ${dark ? "border-ivory/10" : "border-ink/10"}`}>
-                  {c.points.map((pt) => (
-                    <li key={pt} className="flex items-start gap-3 text-[0.95rem]">
-                      <span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full ${dark ? "bg-ivory/10 text-gold-light" : "bg-gold/15 text-gold-deep"}`}>
-                        {dark ? <Minus className="h-3 w-3" /> : <Check className="h-3 w-3" />}
-                      </span>
-                      <span className={pt.includes("£") ? "font-semibold" : ""}>{pt}</span>
-                    </li>
-                  ))}
+                  {c.points.map((pt, k) => {
+                    const money = pt.includes("£");
+                    return (
+                      <motion.li key={pt} className="flex items-start gap-3 text-[0.95rem]"
+                        initial={{ opacity: 0, x: -14 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+                        transition={{ delay: 0.5 + i * 0.12 + k * 0.1, duration: 0.5 }}>
+                        <motion.span className={`mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full ${dark ? "bg-ivory/10 text-gold-light" : "bg-gold/15 text-gold-deep"}`}
+                          initial={{ scale: 0 }} whileInView={{ scale: 1 }} viewport={{ once: true }}
+                          transition={{ delay: 0.6 + i * 0.12 + k * 0.1, type: "spring", stiffness: 400, damping: 14 }}>
+                          {dark ? <Minus className="h-3 w-3" /> : <Check className="h-3 w-3" strokeWidth={3} />}
+                        </motion.span>
+                        {money ? (
+                          <span className="rounded-full bg-gold/15 px-2.5 py-0.5 font-semibold text-ink">{pt}</span>
+                        ) : (
+                          <span>{pt}</span>
+                        )}
+                      </motion.li>
+                    );
+                  })}
                 </ul>
               </Reveal>
             );
