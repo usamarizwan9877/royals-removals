@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-ivory-50 font-sans text-ink antialiased; overflow-x: hidden; }
+  ::selection { background: #D8C29B; color: #0E1626; }
+  :focus-visible { outline: 2px solid #B08D57; outline-offset: 3px; border-radius: 6px; }
+}
+
+@layer components {
+  .eyebrow { @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-eyebrow text-gold-deep; }
+  .eyebrow::before { content: ""; @apply h-px w-8 bg-gold; }
+  .eyebrow-light { @apply text-gold-light; }
+  .h-section { @apply font-display text-[2.35rem] font-light leading-[1.05] tracking-[-0.02em] sm:text-5xl lg:text-[3.6rem]; }
+  .gold-word { @apply italic text-gold; font-variation-settings: "SOFT" 100, "WONK" 1; }
+  .btn { @apply relative inline-flex min-h-[52px] items-center justify-center gap-2.5 overflow-hidden rounded-full px-7 text-[0.95rem] font-semibold transition-all duration-300; }
+  .btn-gold { @apply btn bg-gold text-ink hover:bg-gold-light; }
+  .btn-ink { @apply btn bg-ink text-ivory hover:bg-ink-700; }
+  .btn-ghost { @apply btn border border-ink/15 text-ink hover:border-ink hover:bg-ink hover:text-ivory; }
+  .btn-ghost-light { @apply btn border border-ivory/25 text-ivory hover:border-ivory hover:bg-ivory hover:text-ink; }
+  .arch { border-radius: 999px 999px 28px 28px; }
+  .grain::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .05; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Van driving along an SVG route (CSS motion path – cheap, GPU friendly) */
+.route-van { offset-rotate: auto; animation: drive 14s cubic-bezier(.45,.05,.4,1) infinite; }
+@keyframes drive { 0% { offset-distance: 0%; } 45%, 55% { offset-distance: 100%; } 100% { offset-distance: 100%; } }
+.route-dash { stroke-dasharray: 4 8; animation: dash 1.6s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -24; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
