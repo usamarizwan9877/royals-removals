@@ -3,6 +3,8 @@ import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import { seo, contact, faq, logo } from "@/content/site";
 import MotionProvider from "@/components/ui/MotionProvider";
+import RemovalsCursor from "@/components/ui/RemovalsCursor";
+import ButtonFX from "@/components/ui/ButtonFX";
 
 const display = Fraunces({ subsets: ["latin"], variable: "--font-display", axes: ["SOFT", "WONK", "opsz"], style: ["normal", "italic"], display: "swap" });
 const sans = Manrope({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
@@ -42,7 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-ivory">Skip to content</a>
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>{children}<RemovalsCursor /><ButtonFX /></MotionProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>
