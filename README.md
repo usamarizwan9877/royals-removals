@@ -9,6 +9,11 @@ npm run build    # production build
 ```
 Deploy: push to GitHub → import in Vercel (zero config).
 
+Preview on GitHub Pages: every push to `main` runs `.github/workflows/deploy-pages.yml`, which builds a
+static export (`GITHUB_PAGES=true`) and publishes it to `https://<user>.github.io/royals-removals/`.
+One-time setup: repo **Settings → Pages → Source: GitHub Actions**. Optional secret `GOOGLE_PLACES_API_KEY`
+shows live Google review cards (fetched at build time).
+
 ## Structure
 ```
 app/            layout (fonts, metadata, JSON-LD), page, error, 404
